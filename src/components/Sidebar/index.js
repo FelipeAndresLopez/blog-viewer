@@ -1,16 +1,71 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { connect } from 'react-redux';
-import * as userActions from '../../actions/userActions';
+import axios from 'axios';
+
+import { Loading } from '../Loading/Loading';
+import { Menu, List, Item } from './styles';
 import { userReducer } from '../../reducers/userReducer';
 
+const Sidebar = (initialState) => {
+  const [userData, setUsers] = useReducer(userReducer, initialState);
 
-export const Sidebar = (props) => {
-  const [users, dispatch] = useReducer(userReducer, []);
+  useEffect(() => {
+    (async () => {
+      setUsers({
+        type: 'LOADING'
+      });
+      try {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+        setUsers({
+          type: 'GET_USERS',
+          payload: response.data
+        });
+      } catch (error) {
+        setUsers({
+          type: 'ERROR',
+          payload: 'User information is not available.'
+        });
+      }
+    })();
+  }, []);
 
-  console.log(userActions.getUsers())
+  const setContent = () => {
+    const { loading, error, users } = userData;
+
+    if (loading) {
+      return <Loading />;
+    }
+
+    if (error) {
+      return error;
+    }
+
+    if (users.length > 0) {
+      return (
+        <Menu>
+          <List>
+            {users.map((user) => (
+              <Item key={user.id}>
+                {user.name}
+              </Item>
+            ))}
+          </List>
+        </Menu>
+      );
+    }
+
+    return null;
+  };
+
   return (
-    <div>
-      Sidebar
-    </div>
+    <>
+      {setContent()}
+    </>
   );
 };
+
+const mapStateToProps = ({ userReducer }) => {
+  return userReducer
+}
+
+export default connect(mapStateToProps, {})(Sidebar);

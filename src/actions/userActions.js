@@ -1,4 +1,5 @@
 import { GET_USERS, LOADING, ERROR } from '../types/userTypes';
+import axios from 'axios';
 
 export const getUsers = () => async (dispatch) => {
   dispatch({
@@ -6,14 +7,14 @@ export const getUsers = () => async (dispatch) => {
   });
 
   try {
-    const response = await fetch.get('https://jsonplaceholder.typicode.com/users');
+    const response = await axios('https://jsonplaceholder.typicode.com/users');
     console.log(response)
     dispatch({
       type: GET_USERS,
       payload: response.data
     });
   } catch (error) {
-    console.log(`Error: ${error.message}`);
+    console.error(`Error: ${error.message}`);
     dispatch({
       type: ERROR,
       payload: 'User information is not available.'
