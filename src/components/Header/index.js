@@ -12,7 +12,7 @@ const Posts = (props) => {
     <Title>
       <Grid container>
         <Grid item xs={10} sm={12}>
-          <h1>{userSelected?.posts?.length > 0 ? userSelected.name : 'All posts'}</h1>
+          <h1>{userSelected?.posts?.length > 0 ? userSelected.name : 'All post'}</h1>
         </Grid>
         {props.children}
       </Grid>
