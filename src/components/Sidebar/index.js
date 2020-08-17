@@ -10,12 +10,12 @@ import {
   Logo,
   Anchor
 } from './styles';
-import { setUserSelected, getUsersAndPosts } from '../../actions';
+import { setUserSelected, getUsers } from '../../actions';
 import logo from '../../assets/logo.png';
 
 const Sidebar = (props) => {
   useEffect(() => {
-    props.getUsersAndPosts();
+    props.getUsers();
   }, []);
 
   const setContent = () => {
@@ -65,4 +65,4 @@ const Sidebar = (props) => {
 };
 
 const mapStateToProps = (reducer) => ({ ...reducer });
-export default connect(mapStateToProps, { setUserSelected, getUsersAndPosts })(Sidebar);
+export default connect(mapStateToProps, { setUserSelected, getUsers })(Sidebar);

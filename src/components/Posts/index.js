@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import MaterialTable from 'material-table';
 import Grid from '@material-ui/core/Grid';
 
-import { getPostsByUser } from '../../actions';
+import { getPostsByUser, getPosts } from '../../actions';
 import { Error } from '../Error';
 import { Loading } from '../Loading';
 
 const Posts = (props) => {
+  useEffect(() => {
+    props.getPosts();
+  }, []);
   const setContent = () => {
     const { loading, error, userSelected, posts } = props;
     if (loading) {
@@ -80,4 +83,4 @@ const Posts = (props) => {
 };
 
 const mapStateToProps = (reducer) => ({ ...reducer });
-export default connect(mapStateToProps, { getPostsByUser })(Posts);
+export default connect(mapStateToProps, { getPostsByUser, getPosts })(Posts);

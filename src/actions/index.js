@@ -1,12 +1,30 @@
 import { GET_USERS, LOADING, ERROR, SET_USER_SELECTED, GET_POSTS_BY_USER, GET_POSTS } from '../types';
 import postsData from '../../db.json';
 
-export const getUsersAndPosts = () => (dispatch) => {
+export const getUsers = () => (dispatch) => {
   dispatch({
     type: 'LOADING'
   });
   try {
     const users = postsData;
+    dispatch({
+      type: GET_USERS,
+      payload: users
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: 'ERROR',
+      payload: 'User information is not available.'
+    });
+  }
+};
+
+export const getPosts = () => (dispatch) => {
+  dispatch({
+    type: 'LOADING'
+  });
+  try {
     const posts = [];
 
     postsData.forEach((user) => {
@@ -19,15 +37,11 @@ export const getUsersAndPosts = () => (dispatch) => {
       type: GET_POSTS,
       payload: posts
     });
-    dispatch({
-      type: GET_USERS,
-      payload: users
-    });
   } catch (error) {
     console.error(error);
     dispatch({
       type: 'ERROR',
-      payload: 'User information is not available.'
+      payload: 'Posts information is not available.'
     });
   }
 };

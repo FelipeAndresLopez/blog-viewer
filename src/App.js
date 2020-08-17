@@ -15,12 +15,12 @@ export const App = () => {
       <GlobalStyle />
 
       <Grid container>
-        <Hidden xsDown={isDisplayingSideBar}>
-          <Grid item xs={6} sm={3} md={3}>
+        <Grid item xs={6} sm={3} md={3}>
+          <Hidden xsDown={isDisplayingSideBar}>
             <Sidebar />
-          </Grid>
-        </Hidden>
-        <Grid item xs={12} sm={9} md={9}>
+          </Hidden>
+        </Grid>
+        <Grid item xs={12} sm={9}>
           <Header>
             <Hidden smUp>
               <Grid item xs={2}>
