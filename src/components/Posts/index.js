@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import { getPostsByUser } from '../../actions';
 import { Error } from '../Error';
 import { Loading } from '../Loading';
-import { Title } from './styles';
 
 const Posts = (props) => {
   const setContent = () => {
@@ -32,14 +31,9 @@ const Posts = (props) => {
 
         <>
           <Grid container justify="center">
-            <Grid item xs={12}>
-              <Title>{userSelected.name}</Title>
-            </Grid>
-          </Grid>
-          <Grid container justify="center">
-            <Grid item xs={10}>
+            <Grid item xs={12} md={10}>
               <MaterialTable
-                title=''
+                title=""
                 columns={columns}
                 data={userSelected.posts}
               />
@@ -63,12 +57,7 @@ const Posts = (props) => {
       return (
         <>
           <Grid container justify="center">
-            <Grid item xs={12}>
-              <Title>All posts</Title>
-            </Grid>
-          </Grid>
-          <Grid container justify="center">
-            <Grid item xs={10}>
+            <Grid item xs={12} md={10}>
               <MaterialTable
                 title=""
                 columns={columns}

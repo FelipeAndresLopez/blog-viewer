@@ -7,6 +7,7 @@ export const Menu = styled.nav`
   min-width: 25%;
   height: 100%;
   position: fixed;   
+  z-index: 20;
   overflow: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, .6);
   background-color: rgba(0, 0, 0, .6);
