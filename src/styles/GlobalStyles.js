@@ -1,10 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const primaryColorDark = '#689F38';
-export const primaryColor = '#8BC34A';
+export const primaryColorDark = '#7800B3';
+export const primaryColor = '#BC30FF';
 export const primaryColorLight = '#DCEDC8';
 export const primaryColorText = '#212121';
-export const accentColor = '#CDDC39';
+export const accentColor = '#cdff30';
 export const primaryTextColor = '#212121';
 export const secondaryTextColor = '#757575';
 export const dividerColor = '#BDBDBD';
@@ -32,7 +32,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    overflow-x: hidden;
     min-height: 100vh;
     padding-bottom: 10px;
   }
